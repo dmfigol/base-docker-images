@@ -13,7 +13,7 @@ variables:
 before_script:
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
 
-build-python-3.6-alpine:
+py-3.6-alpine:
   stage: build
   variables:
     PYTHON_VERSION: "3.6"
@@ -25,7 +25,7 @@ build-python-3.6-alpine:
   tags:
     - docker
 
-build-python-3.7-alpine:
+py-3.7-alpine:
   stage: build
   variables:
     PYTHON_VERSION: "3.7"
@@ -37,7 +37,7 @@ build-python-3.7-alpine:
   tags:
     - docker
 
-build-python-3.6-slim-stretch:
+py-3.6-slim-stretch:
   stage: build
   variables:
     PYTHON_VERSION: "3.6"
@@ -49,7 +49,7 @@ build-python-3.6-slim-stretch:
   tags:
     - docker
 
-build-python-3.7-slim-stretch:
+py-3.7-slim-stretch:
   stage: build
   variables:
     PYTHON_VERSION: "3.7"
