@@ -15,7 +15,7 @@ before_script:
 build-python-3.6-alpine:
   stage: build
   variables:
-    PYTHON_VERSION: 3.6
+    PYTHON_VERSION: "3.6"
     DOCKERFILE: Dockerfile-alpine
     TAG: 3.6-alpine
   script: *python_build
@@ -27,7 +27,7 @@ build-python-3.6-alpine:
 build-python-3.7-alpine:
   stage: build
   variables:
-    PYTHON_VERSION: 3.7
+    PYTHON_VERSION: "3.7"
     DOCKERFILE: Dockerfile-alpine
     TAG: 3.7-alpine
   script: *python_build
@@ -39,7 +39,7 @@ build-python-3.7-alpine:
 build-python-3.6-slim-stretch:
   stage: build
   variables:
-    PYTHON_VERSION: 3.6
+    PYTHON_VERSION: "3.6"
     DOCKERFILE: Dockerfile-slim-stretch
     TAG: 3.6-slim-stretch
   script: *python_build
@@ -51,7 +51,7 @@ build-python-3.6-slim-stretch:
 build-python-3.7-slim-stretch:
   stage: build
   variables:
-    PYTHON_VERSION: 3.7
+    PYTHON_VERSION: "3.7"
     DOCKERFILE: Dockerfile-slim-stretch
     TAG: 3.7-slim-stretch
   script: *python_build
