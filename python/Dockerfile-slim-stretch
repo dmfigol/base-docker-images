@@ -1,0 +1,15 @@
+ARG PYTHON_VERSION
+FROM python:${PYTHON_VERSION}-slim-stretch
+
+WORKDIR /app
+ENV PATH="/root/.poetry/bin:$PATH"
+
+RUN apt-get update \
+    && apt-get install -yq curl git libyaml-dev \
+    && curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python \
+    && python -m venv .venv \
+    && poetry config settings.virtualenvs.in-project true \
+    && .venv/bin/pip install --no-cache-dir -U pip setuptools \
+    && mkdir /ntc-templates \
+    && curl -sL https://github.com/networktocode/ntc-templates/archive/master.tar.gz | tar --strip-components=1 -zx -C /ntc-templates
+

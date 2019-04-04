@@ -1,0 +1,61 @@
+image: docker:stable
+
+.python_build: &python_build
+  "cd python && 
+  docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION} -f ${DOCKERFILE} .
+  -t ${PYTHON_IMAGE}:${TAG} . &&
+  docker push ${PYTHON_IMAGE}:${TAG}"
+
+variables:
+  PYTHON_IMAGE: registry.gitlab.com/${CI_PROJECT_PATH}/python
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
+build-python-3.6-alpine:
+  stage: build
+  variables:
+    PYTHON_VERSION: 3.6
+    DOCKERFILE: Dockerfile-alpine
+    TAG: 3.6-alpine
+  script: *python_build
+  only:
+    - schedules
+  tags:
+    - docker
+
+build-python-3.7-alpine:
+  stage: build
+  variables:
+    PYTHON_VERSION: 3.7
+    DOCKERFILE: Dockerfile-alpine
+    TAG: 3.7-alpine
+  script: *python_build
+  only:
+    - schedules
+  tags:
+    - docker
+
+build-python-3.6-slim-stretch:
+  stage: build
+  variables:
+    PYTHON_VERSION: 3.6
+    DOCKERFILE: Dockerfile-slim-stretch
+    TAG: 3.6-slim-stretch
+  script: *python_build
+  only:
+    - schedules
+  tags:
+    - docker
+
+build-python-3.7-slim-stretch:
+  stage: build
+  variables:
+    PYTHON_VERSION: 3.7
+    DOCKERFILE: Dockerfile-slim-stretch
+    TAG: 3.7-slim-stretch
+  script: *python_build
+  only:
+    - schedules
+  tags:
+    - docker
