@@ -2,7 +2,8 @@ image: docker:stable
 
 .python_build: &python_build
   "cd python && 
-  docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION} -f ${DOCKERFILE} .
+  docker build --build-arg PYTHON_VERSION=${PYTHON_VERSION}
+  -f ${DOCKERFILE}
   -t ${PYTHON_IMAGE}:${TAG} . &&
   docker push ${PYTHON_IMAGE}:${TAG}"
 
