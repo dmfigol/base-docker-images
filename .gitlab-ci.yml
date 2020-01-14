@@ -111,14 +111,3 @@ py-3.8-slim-buster:
     - schedules
   tags:
     - docker
-
-py-3.9-slim-buster:
-  stage: build
-  variables:
-    DOCKERFILE: Dockerfile-debian-slim
-    TAG: 3.9-slim-buster
-  script: *python_build
-  only:
-    - schedules
-  tags:
-    - docker
