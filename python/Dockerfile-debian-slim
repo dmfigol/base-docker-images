@@ -4,16 +4,10 @@ FROM python:${TAG}
 WORKDIR /app
 ENV PATH="/root/.poetry/bin:$PATH"
 
-RUN apk add --no-cache \
-    build-base \
-    gcc \
-    libffi-dev \
-    openssl-dev \
-    libxslt-dev \
-    yaml-dev \
-    curl \
-    git \
+RUN apt-get update \
+    && apt-get install -yq curl git libyaml-dev \
     && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python \
     && python -m venv .venv \
     && poetry config virtualenvs.in-project true \
     && .venv/bin/pip install --no-cache-dir -U pip setuptools
+
