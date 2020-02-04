@@ -21,6 +21,7 @@ py-3.6-alpine:
   script: *python_build
   only:
     - schedules
+    - master
   tags:
     - docker
 
@@ -32,6 +33,7 @@ py-3.7-alpine:
   script: *python_build
   only:
     - schedules
+    - master
   tags:
     - docker
 
@@ -43,6 +45,7 @@ py-3.8-alpine:
   script: *python_build
   only:
     - schedules
+    - master
   tags:
     - docker
 
@@ -54,6 +57,7 @@ py-3.9-alpine:
   script: *python_build
   only:
     - schedules
+    - master
   tags:
     - docker
 
@@ -65,6 +69,7 @@ py-3.6-slim-stretch:
   script: *python_build
   only:
     - schedules
+    - master
   tags:
     - docker
 
@@ -76,6 +81,7 @@ py-3.7-slim-stretch:
   script: *python_build
   only:
     - schedules
+    - master
   tags:
     - docker
 
@@ -87,6 +93,7 @@ py-3.6-slim-buster:
   script: *python_build
   only:
     - schedules
+    - master
   tags:
     - docker
 
@@ -98,6 +105,7 @@ py-3.7-slim-buster:
   script: *python_build
   only:
     - schedules
+    - master
   tags:
     - docker
 
@@ -109,5 +117,6 @@ py-3.8-slim-buster:
   script: *python_build
   only:
     - schedules
+    - master
   tags:
     - docker
