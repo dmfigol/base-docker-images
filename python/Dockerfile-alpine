@@ -2,7 +2,7 @@ ARG TAG
 FROM python:${TAG}
 
 WORKDIR /app
-ENV PATH="/root/.poetry/bin:$PATH" BINDIR="/root/bin"
+ENV PATH="/root/.poetry/bin:$PATH"
 
 RUN apk add --no-cache \
     build-base \
@@ -13,7 +13,7 @@ RUN apk add --no-cache \
     yaml-dev \
     curl \
     git \
-    && curl -sL https://taskfile.dev/install.sh | sh \
+    && BINDIR="/usr/local/bin" curl -sL https://taskfile.dev/install.sh | sh \
     && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python \
     && python -m venv .venv \
     && poetry config virtualenvs.in-project true \
