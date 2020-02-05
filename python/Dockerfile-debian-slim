@@ -2,7 +2,7 @@ ARG TAG
 FROM python:${TAG}
 
 WORKDIR /app
-ENV PATH="/root/.poetry/bin:$PATH"
+ENV PATH="/root/.poetry/bin:$PATH" BINDIR="/root/bin"
 
 RUN apt-get update \
     && apt-get install -yq curl git libyaml-dev make \
