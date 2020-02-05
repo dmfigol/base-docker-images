@@ -6,7 +6,7 @@ ENV PATH="/root/.poetry/bin:$PATH"
 
 RUN apt-get update \
     && apt-get install -yq curl git libyaml-dev make \
-    && BINDIR="/usr/local/bin" curl -sL https://taskfile.dev/install.sh | sh \
+    && curl -sL https://taskfile.dev/install.sh | BINDIR="/usr/local/bin" sh \
     && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python \
     && python -m venv .venv \
     && poetry config virtualenvs.in-project true \
