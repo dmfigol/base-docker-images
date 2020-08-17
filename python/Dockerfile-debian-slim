@@ -4,8 +4,10 @@ FROM python:${TAG}
 WORKDIR /app
 ENV PATH="/root/.poetry/bin:$PATH"
 
+ARG DEPS="curl git libyaml-dev make gcc"
+
 RUN apt-get update \
-    && apt-get install -yq curl git libyaml-dev make \
+    && apt-get install -yq ${DEPS} \
     && curl -sL https://taskfile.dev/install.sh | BINDIR="/usr/local/bin" sh \
     && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python \
     && python -m venv .venv \
