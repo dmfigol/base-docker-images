@@ -1,4 +1,7 @@
 on:
+  push:
+    branches:
+      - master
   schedule:
     - cron: "0 4 * * 3,6" # every Wednesday, Saturday at 4AM UTC
 jobs:
