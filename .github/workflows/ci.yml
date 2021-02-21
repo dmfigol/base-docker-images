@@ -28,7 +28,7 @@ jobs:
           context: python
           file: python/Dockerfile-debian-slim
           push: true
-          tags: ghcr.io/dmfigol/python:3.8-slim
+          tags: ghcr.io/dmfigol/base-docker-images/python:3.8-slim
           build-args: |
             TAG=3.8-slim
 
