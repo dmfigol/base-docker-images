@@ -8,7 +8,18 @@ on:
     - cron: "0 4 * * 3,6" # every Wednesday, Saturday at 4AM UTC
 
 jobs:
-  build:
+  python:
+    strategy:
+      matrix:
+        args:
+          - ["python:3.6-slim", "python/Dockerfile-slim"]
+          - ["python:3.7-slim", "python/Dockerfile-slim"]
+          - ["python:3.8-slim", "python/Dockerfile-slim"]
+          - ["python:3.9-slim", "python/Dockerfile-slim"]
+          - ["python:3.6-alpine", "python/Dockerfile-alpine"]
+          - ["python:3.7-alpine", "python/Dockerfile-alpine"]
+          - ["python:3.8-alpine", "python/Dockerfile-alpine"]
+          - ["python:3.9-alpine", "python/Dockerfile-alpine"]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,11 +37,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: python
-          file: python/Dockerfile-debian-slim
+          file: ${{ matrix.args[1] }}
           push: true
-          tags: ghcr.io/dmfigol/base-docker-images/python:3.8-slim
+          tags: ghcr.io/dmfigol/base/${{ matrix.args[0] }}
           build-args: |
-            TAG=3.8-slim
-
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+            TAG=${{ matrix.args[0] }}

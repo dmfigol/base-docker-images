@@ -1,20 +1,13 @@
 ARG TAG
-FROM python:${TAG}
+FROM ${TAG}
 
 WORKDIR /app
-ENV PATH="/root/.poetry/bin:$PATH"
+ENV POETRY_HOME="/opt/poetry" \
+    PATH="/opt/poetry/bin:$PATH" \
+    POETRY_VIRTUALENVS_IN_PROJECT=1
 
-RUN apk add --no-cache \
-    build-base \
-    gcc \
-    libffi-dev \
-    openssl-dev \
-    libxslt-dev \
-    yaml-dev \
-    curl \
-    git \
-    && curl -sL https://taskfile.dev/install.sh | BINDIR="/usr/local/bin" sh \
-    && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python \
-    && python -m venv .venv \
-    && poetry config virtualenvs.in-project true \
-    && .venv/bin/pip install --no-cache-dir -U pip setuptools
+ARG DEPS="ca-certificates build-base gcc libffi-dev openssl-dev libxslt-dev curl git make"
+
+RUN apk add --no-cache ${DEPS} \
+ && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin \
+ && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
