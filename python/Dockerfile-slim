@@ -1,5 +1,5 @@
 ARG TAG
-FROM python:${TAG}
+FROM ${TAG}
 
 WORKDIR /app
 ENV POETRY_HOME="/opt/poetry" \
