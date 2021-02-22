@@ -32,6 +32,7 @@ jobs:
           context: python
           file: python/Dockerfile-${{ matrix.base }}
           push: true
+          pull: true
           tags: ghcr.io/dmfigol/base/python:${{ matrix.py-version }}-${{ matrix.base }}
           build-args: |
             TAG=python:${{ matrix.py-version }}-${{ matrix.base }}
