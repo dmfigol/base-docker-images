@@ -1,6 +1,9 @@
 ARG TAG
 FROM ${TAG}
 
+LABEL org.opencontainers.image.source="https://github.com/dmfigol/base-docker-images"
+LABEL maintainer="git@dmfigol.me"
+
 WORKDIR /app
 ENV POETRY_HOME="/opt/poetry" \
     PATH="/opt/poetry/bin:$PATH" \
