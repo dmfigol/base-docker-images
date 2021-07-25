@@ -7,6 +7,9 @@ on:
   schedule:
     - cron: "0 4 * * 3,6" # every Wednesday, Saturday at 4AM UTC
 
+env:
+  REGISTRY: ghcr.io
+
 jobs:
   python:
     strategy:
@@ -21,9 +24,9 @@ jobs:
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GHCR_TOKEN }}
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push
         id: docker_build
@@ -33,6 +36,6 @@ jobs:
           file: python/Dockerfile-${{ matrix.base }}
           push: true
           pull: true
-          tags: ghcr.io/dmfigol/base/python:${{ matrix.py-version }}-${{ matrix.base }}
+          tags: ${{ env.REGISTRY }}/dmfigol/base/python:${{ matrix.py-version }}-${{ matrix.base }}
           build-args: |
             TAG=python:${{ matrix.py-version }}-${{ matrix.base }}
